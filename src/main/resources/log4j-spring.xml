@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p %c{1} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${LOG_PATH}/${LOG_FILE}"/>
+        <param name="Threshold" value="INFO"/>
+        <param name="MaxFileSize" value="10MB"/>
+        <param name="MaxBackupIndex" value="20"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%c {%l}:%n [%t] %-5p - %m%n"/>
+        </layout>
+    </appender>
+
+    <!--<appender name="JmonitorAppender" class="com.alibaba.alimonitor.jmonitor.plugin.log4j.JMonitorLog4jAppender"/>-->
+
+    <logger name="org.apache.catalina.startup.DigesterFactory">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.apache.catalina.util.LifecycleBase">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.apache.coyote.http11.Http11NioProtocol">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.apache.sshd.common.util.SecurityUtils">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.apache.tomcat.util.net.NioSelectorPool">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.crsh.plugin">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.crsh.ssh">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.eclipse.jetty.util.component.AbstractLifeCycle">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.hibernate.validator.internal.util.Version">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.springframework.boot.actuate.autoconfigure.CrshAutoConfiguration">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.thymeleaf">
+        <level value="WARN"/>
+    </logger>
+
+    <root>
+        <priority value="info"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</log4j:configuration>
